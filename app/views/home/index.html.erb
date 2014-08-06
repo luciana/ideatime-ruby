@@ -1,0 +1,136 @@
+<div class="row-fluid">
+	<div class="span9">
+		<%= loginLinks() %>
+	</div>
+	<div class="span3"><%= link_to "For Developers", home_developer_path %></div>
+</div>
+<div ng-controller="IdeaController">
+	<div  class="row-fluid">
+		<h1 class="pump-up logo">
+			<span class="strong-font">Idea Time</span>
+			<span class="strong-font">Happy Hour</span>
+		</h1>
+		<h4 class="lead thin-font">...alcohol infused ideas...</h4>		  
+		<form class="form-inline" name="ideaForm"> 
+			<div class="alert alert-block alert-error fade in hide">	        		
+				<span>Oops, you forgot to enter the idea</span>
+			</div>
+			<div class="input-append span12 pagination-centered">				 
+			  <input class="form-control input-xxlarge input-tall" ng-model="idea.description" id="ideaInput" type="text"  placeholder="What is your idea?">		
+			   <% if current_user %>				 		
+			  <button type="button" role="button" class="btn btn-warning btn-large" ng-click="addIdea(idea, <%= current_user.id %>">Submit Idea</button>
+			  <% else %>			  	
+			  	<a href="#loginModal" ng-click="validate(idea)" role="button" class="btn btn-large btn-warning" >Enter</a>		 
+			  <% end %>
+			</div>   					
+			<p class="small pagination-centered">
+				<label class="radio">
+				  <input type="radio" ng-hide="true" name="display" ng-model="idea.display" value="public" checked>
+				</label>
+				<label class="radio">
+				  <input type="radio" name="display" ng-model="idea.display" value="private"> Make my idea available for my peeps only						  
+				</label>					
+			</p>		
+		</form>							
+	</div>
+	<div class="row-fluid">	  
+	  <div class="span9">
+	  	<div class="panel-heading">
+		    <h3 class="panel-title thin-font">Greatest ideas</h3>
+		</div>
+	  	<div class="list-group">
+			<div class="list-group">				
+			 	<div class="list-group-item blue-bg well" ng-repeat="i in ideas | orderBy:created_at">					 		 	 
+			    	<span class="badge">{{i.comments.length}}</span>			   
+				    {{i.description}}	
+				    <small>by {{i.user.name}}</small>			    			     
+				    <div class="comments-container">				    	
+					    <div ng-repeat="c in i.comments" ng-show="i.hascomments">					    	
+						    <div class="panel panel-default">
+							  <div class="panel-body">
+							   <small>{{c.body}}</small>
+							    <small class="clearfix"> on {{c.created_at | date}} </small>				   
+							  </div>
+							</div>								
+						</div>	
+
+					</div>						
+					<form name="commentForm" novalidate ng-submit="addComment(i, comment)" ng-controller="CommentController">
+						<blockquote >
+						 {{comment.body}} {{comment.stars}}
+						</blockquote>
+						<!--<select ng-model="comment.stars" class="span3" ng-options="stars for stars in [5,4,3,2,1]" title="Stars">
+		                  <option value="">Rate</option>
+		                </select>-->
+						<input ng-model="comment.body" type="text" class="form-control" placeholder="say something about this" title="Comment"/> 
+						<input ng-hide="true" ng-model="comment.idea_id" type="text" class="form-control" value="{{i.id}}" /> 
+						<button type="submit" ng-disabled="commentForm.$invalid" class="btn btn-info">Enter</button>  
+					</form>					
+			  </div>
+			 
+			</div>
+		</div>	
+	  </div>
+	  <div class="span3">	
+	  	<!-- location -->
+		 <div class="panel panel-danger">
+		  <div class="panel-heading">
+		   <h3 class="panel-title thin-font light-gray">Start an ITHH</h3>
+		  </div>
+		  <div class="panel-body">	    
+		    <div class="form-group" >
+		     <form name="locationForm" novalidate ng-submit="locationForm.$valid &&LocationCtrl.findPlace()" ng-controller="LocationController as LocationCtrl">
+		     	 <textarea class="form-control" ng-model="LocationCtrl.event.users" id="zipInput" type="text" placeholder="who to invite?"></textarea>
+		     	 <p>
+			    	<small class="text-info">enter email addresses - comma delimited</small>
+				</p>
+		     	 <input class="form-control" ng-model="LocationCtrl.event.schedule" id="zipInput" type="text" placeholder="when?">
+			  <input class="form-control" ng-model="LocationCtrl.event.location.name" id="zipInput" type="text" placeholder="where?">
+			  <!--<label class="control-label" for="zipInput">Find a place</label>
+			  <input class="form-control input-mini" ng-model="LocationCtrl.location.zip" id="zipInput" type="text" placeholder="enter zip" value="44124">
+			  <p>
+			    I already have a location picked.
+
+			</p>-->			
+			<p>			 
+			  <button type="submit" class="btn btn-warning">Invite</button>			  
+			</p>
+			<div id="map-canvas"></div>
+			</form>
+			</div>				
+		  </div>
+		</div>
+	  </div>
+	</div>	
+</div>
+	<!-- Modal -->
+<div id="loginModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">One more thing...</h3>
+  </div>
+  <div class="modal-body">  	
+    <p>We need to know more about you so that you can:
+    	<ul><li>Schedule an Idea Time Happy Hour with your possy</li>
+    		<li>Submit your greatest (never dumb) idea</li>
+    	</ul>
+    	<div id="user-widget">
+		  <%= loginLinks() %>
+		</div>
+		<h3>OR</h3>
+		<p> Enter your email, so you're assigned the proud owner of the great idea </p>
+		<form name="userForm" ng-controller="UserController" ng-submit="userForm.$valid && createAccount(user)" novalidate>
+			<input class="form-control" required ng-model="user.name" id="nameInput" type="text" placeholder="your name, nickname, whatever you want...">
+			<input class="form-control" required ng-model="user.email" id="emailInput" type="text" placeholder="your@email.com">
+			<span class="error" ng-show="userForm.input.$error.required">Required!</span>
+			<span class="error" ng-show="userForm.input.$error.email">Not valid email!</span>
+			<button type="submit" class="btn btn-warning">Submit Idea</button>		
+		</form>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>   
+  </div>
+</div>  	
+
+

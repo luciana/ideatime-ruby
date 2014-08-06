@@ -1,0 +1,65 @@
+.strong-font{
+    font-family: 'Montserrat', sans-serif;
+}
+.thin-font{
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+.logo{
+    color: #1A3888;
+}
+.light-gray{
+    color: #ccc;
+}
+.bg {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-image: url('4.jpg');   
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+     background-size: cover;
+}
+
+.hide{display:none;}
+.show{display: block;}
+.input-tall {
+    padding: 11px 19px !important;
+    font-size: 16px !important;
+    
+}
+
+
+.comments-container{
+    padding-top: 10px;
+}
+#map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+}
+
+
+.idea-input-item {
+	padding: 10px;
+	-webkit-border-radius: 9px;
+	-moz-border-radius: 9px;
+	border-radius: 9px;
+}
+
+.idea-text-input{
+    font-size: 20px;
+line-height: 24px;
+height: 30px;
+-webkit-border-radius: 6px 0 0 6px;
+-moz-border-radius: 6px 0 0 6px;
+border-radius: 6px 0 0 6px;
+border-right: 0;
+width: 84%;
+margin-bottom: 0;
+
+}
+

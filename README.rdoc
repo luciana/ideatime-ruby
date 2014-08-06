@@ -1,0 +1,4 @@
+
+This is a Ruby on Rails(4) web application that uses AngularJS as the front end framework. The website is a fun place to enter the very interesting and creative ideas generated and discussed during Idea Time Happy Hour. 
+
+<tt>rake doc:app</tt>.

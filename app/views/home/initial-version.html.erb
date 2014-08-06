@@ -1,0 +1,96 @@
+<div ng-controller="HomeController as home">
+	<div class="jumbotron">
+		<h1>Idea Time Happy Hour</h1>
+		<h2>alcohol infused ideas</h2>
+
+		<!-- location -->
+		 <div class="panel panel-danger">
+		  <div class="panel-heading">
+		    <h3 class="panel-title">Where is Happy Hour?</h3>
+		  </div>
+		  <div class="panel-body">	    
+		    <div class="form-group" >
+		     <form name="locationForm" novalidate ng-submit="locationForm.$valid &&LocationCtrl.findPlace()" ng-controller="LocationController as LocationCtrl">
+			  <label class="control-label" required for="zipInput">Select a location for you Idea Time Happy Hour Event</label>
+			  <input class="form-control" required ng-model="LocationCtrl.location.zip" id="zipInput" type="text" placeholder="enter zip" value="44124">
+			  <button type="submit" class="btn btn-primary">Find</button>
+			  <p>
+			    <small class="text-info">I already have a location picked.</small>
+			</p>
+			<div id="map-canvas"></div>
+			</form>
+			</div>				
+		  </div>
+		</div>	
+
+		<!-- add idea -->	 
+		 <div class="panel panel-danger">
+		  <div class="panel-heading">
+		    <h3 class="panel-title">What idea?</h3>
+		  </div>
+		  <div class="panel-body">	    
+		    <div class="form-group">
+		    	<form name="ideaForm" ng-submit="ideaForm.$valid &&IdeaCtrl.addIdea()" ng-controller="IdeaController as IdeaCtrl">
+		    		<!--  Live Preview -->
+	              <blockquote>	                
+	                {{IdeaCtrl.idea.description}}	                               
+	              </blockquote>
+				 			 
+				  <input ng-hide="true" ng-model="IdeaCtrl.idea.author" type="email" class="form-control" placeholder="test@example.com" title="Email" />             
+				  <input class="form-control" required ng-model="IdeaCtrl.idea.description" id="ideaInput" type="text" placeholder="What is your idea?">
+				  <button type="submit" class="btn btn-primary">Enter</button>
+				</form>
+			</div>			
+		  </div>
+		</div>
+	</div>
+	<div class="jumbotron">
+		<!-- view ideas and add comment -->	 
+		<div class="row">
+          <div class="col-lg-12">
+            <h2>Ideas</h2>
+          </div>
+        </div>
+		<div class="list-group">
+			<div class="list-group">
+			  <div class="list-group-item" ng-repeat="i in home.ideas">			  	
+			    <span class="badge">{{i.comments.length}}</span>			   
+			    {{i.description}}
+			    <div ng-repeat="c in i.comments" ng-show="i.hascomments">
+				    <div class="panel panel-default">
+					  <div class="panel-body">
+					    {{c.body}}	
+					    <cite> on {{c.createdOn | date}} </cite>				   
+					  </div>
+					</div>	
+				</div>			
+				<form name="commentForm" ng-submit="CommentCtrl.addComment(i)" ng-controller="CommentController as CommentCtrl">		    	
+				  <input ng-model="CommentCtrl.comment.body" type="text" class="form-control" placeholder="say something about this" title="Comment" /> 
+				  <input ng-hide="true" ng-model="CommentCtrl.comment.author" type="Email" class="form-control" value="test@example.com" title="Email" /> 
+				  <button type="submit" class="btn btn-info">Enter</button>  
+				</form>
+				
+			  </div>
+			 
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">Where should we meet?</h4>
+      </div>
+      <div class="modal-body">
+	       
+	       <div class="well well-sm"><strong>MPP Headquaters</strong></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

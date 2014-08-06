@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Idea Time Happy Hour - alcohol infused ideas!</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>  
+  <link rel="stylesheet" type="text/css" href="assets/libraries/bootstrap-responsive.css" />
+  <!--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>-->
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Montserrat:700' rel='stylesheet' type='text/css'>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+   <%= auto_discovery_link_tag :rss %> 
+  <meta name="description" content="Idea time happy hour meetups where best ideas come alive">
+  <meta name="keyword" content="idea, happy hour, fun, meetup ">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="apple-touch-icon" href="/appleicon.png"/>  
+  <link rel="shortcut icon" href="/favicon.ico" />
+   <%= yield :head %>
+</head>
+<body ng-app="Home" class="bg">
+<div class="container">
+  <div class="header"> <%= yield :header %></div>
+  <div class="content"><%= yield %></div>
+  <div class="footer"><%= yield :foot %></div>
+</div>
+</body>
+</html>
