@@ -1,6 +1,6 @@
 <div class="well">
 	<div class="content-inner">
-		<h1>Idea Time Happy Hour APIs</h1>
+		<h1><a href="javascript:history.back();">Idea Time Happy Hour APIs</a></h1>
 		<h4>developer fun house</h4>
 	</div>	
 </div>
@@ -9,14 +9,54 @@
   <div class="thumbnail">
       <img data-src="holder.js/300x200" alt="">
       <h3>GET /Ideas</h3>
-      <p><%= link_to "Ideas API", api_v1_ideas_path %></p>
+     
+      <p>Get an array of idea objects</p>
+       <p><%= link_to "Ideas API", api_v1_ideas_path %></p>
+      <pre>{
+        url: "/api/v1/ideas",
+        method: "GET"
+      }
+      </pre>
+      <p class="title">Response</p>
+      <pre>
+        [
+        {
+        "id":1,
+        "description":"my great idea",
+        "display":"public",
+        "created_at":"2014-08-03 14:29:4 UTC",
+        "hascomments":true,
+        "user":{
+          "name":"Joann",
+          "location":"Cleveland"
+        },
+        "comments":[
+          {"body":"jhkhk",
+          "stars":5,
+          "created_at":"2014-08-03 22:48:07 UTC"
+        },
+        {...},
+        {...}
+        ]}
+      </pre>
     </div>
 </div>
    <div class="span4">
    <div class="thumbnail">
       <img data-src="holder.js/300x200" alt="">
       <h3>GET /Groups</h3>
-      <p><%= link_to "Groups API", api_v1_groups_path %></p>
+      <p>Get an array of group objects</p>
+       <p><%= link_to "Groups API", api_v1_groups_path %></p>
+       <pre>{
+        url: "/api/v1/groups",
+        method: "GET"
+      }
+      </pre>     
+      <p class="title">Response<p>
+        <pre>[
+          {"name":"Penquin Tea Party"},
+          {"name":"Idea Time HH Board Members"}
+          ]</pre>
     </div>
 </div>
     <div class="span4">
@@ -29,7 +69,11 @@
       method: "POST",
       data: data,
       headers: {'Content-Type': 'application/json'}
-    } </pre> where data is <pre>data = {body: "body as text", stars:"stars as number", idea_id: "idea id as number"};</pre></p>
+    } </pre> where data is <pre>data = {
+    body: "body as text", 
+    stars:"stars as number", 
+    idea_id: "idea id as number"
+  };</pre></p>
     </div>
 </div>
 </div>

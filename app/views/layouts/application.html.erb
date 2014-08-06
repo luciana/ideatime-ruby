@@ -20,9 +20,15 @@
 </head>
 <body ng-app="Home" class="bg">
 <div class="container">
-  <div class="header"> <%= yield :header %></div>
+  <div class="header"> 
+    <%= yield :header %>
+    <%= render 'layouts/header' %>
+  </div>
   <div class="content"><%= yield %></div>
-  <div class="footer"><%= yield :foot %></div>
+  <div class="footer">
+    <%= yield :footer %>
+    <%= render 'layouts/footer' %>
+  </div>
 </div>
 </body>
 </html>

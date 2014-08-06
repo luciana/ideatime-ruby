@@ -1,16 +1,10 @@
-<div class="row-fluid">
-	<div class="span9">
-		<%= loginLinks() %>
-	</div>
-	<div class="span3"><%= link_to "For Developers", home_developer_path %></div>
-</div>
 <div ng-controller="IdeaController">
 	<div  class="row-fluid">
 		<h1 class="pump-up logo">
 			<span class="strong-font">Idea Time</span>
 			<span class="strong-font">Happy Hour</span>
 		</h1>
-		<h4 class="lead thin-font">...alcohol infused ideas...</h4>		  
+		<h4 class="lead thin-font">...creative alcohol infused ideas... where every idea is a bad idea!</h4>		  
 		<form class="form-inline" name="ideaForm"> 
 			<div class="alert alert-block alert-error fade in hide">	        		
 				<span>Oops, you forgot to enter the idea</span>
@@ -124,6 +118,7 @@
 			<input class="form-control" required ng-model="user.email" id="emailInput" type="text" placeholder="your@email.com">
 			<span class="error" ng-show="userForm.input.$error.required">Required!</span>
 			<span class="error" ng-show="userForm.input.$error.email">Not valid email!</span>
+			<p class="small">If you already sign up, just enter your email. We will look you up</p>
 			<button type="submit" class="btn btn-warning">Submit Idea</button>		
 		</form>
     </p>
