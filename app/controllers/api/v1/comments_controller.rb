@@ -2,6 +2,10 @@ module Api
 	module V1
 		class CommentsController <  ApiController
 		
+			def index
+				@comment = Comment.all
+				render "api/comments/show"		
+			end
 			def show
 				@comment = Comment.find(params[:id])
 				render "api/comments/show"		

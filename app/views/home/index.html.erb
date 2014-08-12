@@ -9,21 +9,18 @@
 			<div class="alert alert-block alert-error fade in hide">	        		
 				<span>Oops, you forgot to enter the idea</span>
 			</div>
-			<div class="input-append span12 pagination-centered">				 
-			  <input class="form-control input-xxlarge input-tall" ng-model="idea.description" id="ideaInput" type="text"  placeholder="What is your idea?">		
-			   <% if current_user %>				 		
-			  <button type="button" role="button" class="btn btn-warning btn-large" ng-click="addIdea(idea, <%= current_user.id %>">Submit Idea</button>
+			<div class="input-append span12 pagination-centered">	
+
+			  <input class="form-control input-xxlarge input-tall" ng-model="idea.description" id="ideaInput" type="text"  placeholder="What is your idea?">	
+			   <% if current_user %>	
+					<input type="hidden"  value="{{<%=current_user.id%>}}" id="ideaUserIdHidden"/> 
+					<button type="button" role="button" class="btn btn-warning btn-large" ng-click="saveIdea(idea, ideaForm)">Submit Idea</button>
 			  <% else %>			  	
-			  	<a href="#loginModal" ng-click="validate(idea)" role="button" class="btn btn-large btn-warning" >Enter</a>		 
+				  	<a href="#loginModal" ng-click="validate(idea)" role="button" class="btn btn-large btn-warning">Enter</a>		 
 			  <% end %>
 			</div>   					
 			<p class="small pagination-centered">
-				<label class="radio">
-				  <input type="radio" ng-hide="true" name="display" ng-model="idea.display" value="public" checked>
-				</label>
-				<label class="radio">
-				  <input type="radio" name="display" ng-model="idea.display" value="private"> Make my idea available for my peeps only						  
-				</label>					
+
 			</p>		
 		</form>							
 	</div>
@@ -49,15 +46,15 @@
 						</div>	
 
 					</div>						
-					<form name="commentForm" novalidate ng-submit="addComment(i, comment)" ng-controller="CommentController">
+					<form name="commentForm" novalidate ng-submit="saveComment(comment, i)" ng-controller="CommentController">
 						<blockquote >
 						 {{comment.body}} {{comment.stars}}
 						</blockquote>
-						<!--<select ng-model="comment.stars" class="span3" ng-options="stars for stars in [5,4,3,2,1]" title="Stars">
-		                  <option value="">Rate</option>
-		                </select>-->
-						<input ng-model="comment.body" type="text" class="form-control" placeholder="say something about this" title="Comment"/> 
-						<input ng-hide="true" ng-model="comment.idea_id" type="text" class="form-control" value="{{i.id}}" /> 
+						<select ng-model="comment.stars" class="span3" ng-options="stars for stars in [5,4,3,2,1]" title="Stars">
+		                  <option value="">your thoughts in one word</option>
+		                </select>
+						<input ng-model="comment.body" type="text" class="form-control" placeholder="say something about this" title="Comment"/> 						
+						<input type="hidden" id="commentIdeaIdHidden" class="form-control" value="{{i.id}}" /> 						
 						<button type="submit" ng-disabled="commentForm.$invalid" class="btn btn-info">Enter</button>  
 					</form>					
 			  </div>
@@ -74,6 +71,7 @@
 		  <div class="panel-body">	    
 		    <div class="form-group" >
 		     <form name="locationForm" novalidate ng-submit="locationForm.$valid &&LocationCtrl.findPlace()" ng-controller="LocationController as LocationCtrl">
+		     	<small>not sure yet what to do here yet</small>
 		     	 <textarea class="form-control" ng-model="LocationCtrl.event.users" id="zipInput" type="text" placeholder="who to invite?"></textarea>
 		     	 <p>
 			    	<small class="text-info">enter email addresses - comma delimited</small>
@@ -96,7 +94,7 @@
 		</div>
 	  </div>
 	</div>	
-</div>
+
 	<!-- Modal -->
 <div id="loginModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
@@ -104,18 +102,23 @@
     <h3 id="myModalLabel">One more thing...</h3>
   </div>
   <div class="modal-body">  	
+  	{{idea}}	
     <p>We need to know more about you so that you can:
-    	<ul><li>Schedule an Idea Time Happy Hour with your possy</li>
+    	<ul>
     		<li>Submit your greatest (never dumb) idea</li>
+    		<li>Schedule an Idea Time Happy Hour with your possy</li>
+    		
     	</ul>
     	<div id="user-widget">
 		  <%= loginLinks() %>
 		</div>
 		<h3>OR</h3>
-		<p> Enter your email, so you're assigned the proud owner of the great idea </p>
-		<form name="userForm" ng-controller="UserController" ng-submit="userForm.$valid && createAccount(user)" novalidate>
-			<input class="form-control" required ng-model="user.name" id="nameInput" type="text" placeholder="your name, nickname, whatever you want...">
-			<input class="form-control" required ng-model="user.email" id="emailInput" type="text" placeholder="your@email.com">
+		<p> Enter your name &amp; email, so you're assigned the proud owner of the great idea </p>
+		<form name="userForm" ng-controller="SessionController" ng-submit="userForm.$valid && signIn(user, idea)" novalidate>
+
+			<input class="form-control" ng-model="user.name" id="nameInput" type="text" placeholder="your name, nickname, whatever you want...">
+			<input class="form-control" required ng-model="user.email" id="emailInput" type="text" placeholder="your@email.com" value="test@test.com">
+			<input class="form-control" ng-hide="true" ng-model="user.provider" id="providerInput" type="text" value="website">
 			<span class="error" ng-show="userForm.input.$error.required">Required!</span>
 			<span class="error" ng-show="userForm.input.$error.email">Not valid email!</span>
 			<p class="small">If you already sign up, just enter your email. We will look you up</p>
@@ -128,4 +131,6 @@
   </div>
 </div>  	
 
+
+</div>
 

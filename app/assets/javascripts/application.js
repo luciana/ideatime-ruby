@@ -13,7 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require ./libraries/angular.min.js
 //= require_tree ./libraries
+//= required ./services
+//= required ./controllers
 //= require_tree .
 
 

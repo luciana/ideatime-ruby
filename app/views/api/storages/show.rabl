@@ -1,2 +1,0 @@
-
-node(:workout){@resourcesObject}

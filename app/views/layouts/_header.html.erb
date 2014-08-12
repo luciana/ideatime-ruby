@@ -1,6 +1,12 @@
 <div class="row-fluid">
 	<div class="span9">
-		<%= loginLinks() %>
+		<%= loginLinks() %>		
+		<% if current_user %>
+	 	 <span><%= "Welcome #{current_user.name}"%></span>      	              
+	     <form name="userForm" ng-controller="SessionController" ng-submit="userForm.$valid && signOut()" novalidate>			
+	     	<button type="submit" class="btn btn-danger">Bye Bye</button>		
+		</form>
+		<% end %>
 	</div>
 	<div class="span3"><%= link_to "For Developers", home_developer_path %></div>
 </div>
