@@ -180,9 +180,9 @@ Idea.create(:description => 'App that reads email out load for me', :user_id => 
 (179, 'Flavored bread - like peanut butter and jelly flavored bread. That way there is no sticky mess!', '', '2014-03-14 14:22:29', 1, 1, 29, NULL, NULL, '2014-04-11 17:19:30'),
 (180, 'Taco Clip - Device that allows you to cleanly eat tacos in the car.  It clips the back portion of the taco (or chalupa) closed so the contents don''t fall onto your lap while you are driving. ', '', '2014-04-23 14:02:41', 1, 1, 29, NULL, NULL, '2014-08-07 20:59:01'),
 (181, 'A shower bubble where u can walk around for about an hour while taking a warm shower... Ahhh.. Think about the therapeutic benefits!', 'MyPilatesPal', '2014-06-26 11:51:17', 1, 1, 35, NULL, NULL, '2014-08-07 22:51:20'),
-(182, 'Diaper monitor .. It regulates weight and smell of diaper and notifies when it needs change..', 'MyPilatesPal', '2014-06-26 11:53:04', 1, 1, 35, NULL, NULL, '2014-06-26 11:53:04'),
+#(182, 'Diaper monitor .. It regulates weight and smell of diaper and notifies when it needs change..', 'MyPilatesPal', '2014-06-26 11:53:04', 1, 1, 35, NULL, NULL, '2014-06-26 11:53:04'),
 (183, 'Women beer belly - Jen how did you do that?', 'luciana123_2002', '2014-08-06 20:21:44', 1, 1, 2, NULL, NULL, '2014-08-07 20:18:48'),
-(184, 'Fancy velcro leather straps to put around wraps to put around flip flops. Flip flops for the business casual person.', '', '2014-08-07 20:13:42', 1, 1, 29, NULL, NULL, '2014-08-07 20:33:49'),
+#(184, 'Fancy velcro leather straps to put around wraps to put around flip flops. Flip flops for the business casual person.', '', '2014-08-07 20:13:42', 1, 1, 29, NULL, NULL, '2014-08-07 20:33:49'),
 #(185, 'USB Stick which when plugged into your machine mimics a mouse.  Makes extremely tiny movements which prevents your machine from going to sleep.', '', '2014-08-07 20:39:50', 1, 1, 29, NULL, NULL, '2014-08-07 20:39:50'),
 (186, 'Along the idea of a laugh track, implement "ooh and ahhh" reels during obscure olympic/less popular games as a social experiment to enhance the game for others.  For instance, I have no idea when something great/bad happens in figure skating so give me a ', '', '2014-08-07 20:43:48', 1, 1, 29, NULL, NULL, '2014-08-07 20:43:48'),
 =end
@@ -194,6 +194,8 @@ Idea.create(:description => 'App that reads email out load for me', :user_id => 
 #(192, 'dating site for gamers', 'skoscho', '2014-08-07 22:01:00', 1, 1, 11, NULL, NULL, '2014-08-07 22:01:00'),
 #(193, 'Match managers with employees that are compatible ', 'getSabotaged', '2014-08-07 22:12:24', 1, 1, 1, NULL, NULL, '2014-08-07 22:12:24'),
 #(194, 'Baby wild animal subscription service.  Pay subscription fee to be caretaker to baby animal.  Send it back when it becomes too big or you''re bored with it.', 'MightyAnger', '2014-08-08 15:56:07', 1, 1, 3, NULL, NULL, '2014-08-08 19:33:37');
+Idea.create(:description => 'Fancy velcro leather straps to put around wraps to put around flip flops. Flip flops for the business casual person.',:user_id =>3,:display => "public")
+Idea.create(:description => 'Diaper monitor .. It regulates weight and smell of diaper and notifies when it needs change..',:user_id => 2,:display => "public")
 
 
 Idea.create(:description => 'Baby wild animal subscription service.  Pay subscription fee to be caretaker to baby animal.  Send it back when it becomes too big or you''re bored with it.',:user_id => 3,:display => "public")
