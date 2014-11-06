@@ -4,7 +4,7 @@
 			<span class="strong-font">Idea Time</span>
 			<span class="strong-font">Happy Hour</span>
 		</h1>
-		<h4 class="lead thin-font">...creative alcohol infused ideas... where every idea is a bad idea!</h4>		  
+		<h4 class="lead thin-font">...creative alcohol infused ideas...</h4>		  
 		<form class="form-inline" name="ideaForm"> 
 			<div class="alert alert-block alert-error fade in hide">	        		
 				<span>Oops, you forgot to enter the idea</span>
@@ -51,7 +51,7 @@
 						 {{comment.body}} {{comment.stars}}
 						</blockquote>
 						<select ng-model="comment.stars" class="span3" ng-options="stars for stars in [5,4,3,2,1]" title="Stars">
-		                  <option value="">your thoughts in one word</option>
+		                  <option value="">stars</option>
 		                </select>
 						<input ng-model="comment.body" type="text" class="form-control" placeholder="say something about this" title="Comment"/> 						
 						<input type="hidden" id="commentIdeaIdHidden" class="form-control" value="{{i.id}}" /> 						
@@ -63,8 +63,13 @@
 		</div>	
 	  </div>
 	  <div class="span3">	
+	  	 <h3 class="panel-title thin-font light-gray">Compete for the Oscars</h3>
+	  	
+	  	<img src="assets/id_oscars.png" />
+
+	  	
 	  	<!-- location -->
-		 <div class="panel panel-danger">
+		<!--<div class="panel panel-danger">
 		  <div class="panel-heading">
 		   <h3 class="panel-title thin-font light-gray">Start an ITHH</h3>
 		  </div>
@@ -77,21 +82,21 @@
 			    	<small class="text-info">enter email addresses - comma delimited</small>
 				</p>
 		     	 <input class="form-control" ng-model="LocationCtrl.event.schedule" id="zipInput" type="text" placeholder="when?">
-			  <input class="form-control" ng-model="LocationCtrl.event.location.name" id="zipInput" type="text" placeholder="where?">
+			  <input class="form-control" ng-model="LocationCtrl.event.location.name" id="zipInput" type="text" placeholder="where?">-->
 			  <!--<label class="control-label" for="zipInput">Find a place</label>
 			  <input class="form-control input-mini" ng-model="LocationCtrl.location.zip" id="zipInput" type="text" placeholder="enter zip" value="44124">
 			  <p>
 			    I already have a location picked.
 
 			</p>-->			
-			<p>			 
+			<!--<p>			 
 			  <button type="submit" class="btn btn-warning">Invite</button>			  
 			</p>
 			<div id="map-canvas"></div>
 			</form>
 			</div>				
 		  </div>
-		</div>
+		</div>-->
 	  </div>
 	</div>	
 
